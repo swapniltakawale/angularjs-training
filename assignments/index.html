@@ -11,65 +11,197 @@
     
  </head>
 <body  ng-controller="myController" >
-    
-    <div>
+    <div >
+        <table border="0" style="min-width:300px" class="table">
+            <form class="form-inline" role="form" ng-submit = submit() novalidate>
+            <tr  class="form-group">
+            <td>
+             <label for="name">Person Name:</label>
+            </td>
+            <td>
+               <input type="text" ng-model="Name" name="Name"  class="form-control" placeholder="Enter Name" >
+<!--
+                <span class="help-inline" ng-show="form.Name && form.Name.$error.required">Required</span>
+            <span class="help-inline" ng-show="submitted && form.Name.$error.text">Invalid email</span>
+-->
+            </td>  
+            <td>
+            
+            </td>
+            <td>
+            </td>  
+            </tr>
+                <th class="center"><h3>Income</h3></th>
+        <th></th>
+                <th class="center"><h3>Expenses</h3></th>
+        <th></th>
+            <tr>
+            <td>
+                <label for="salary"> Salary:</label>
+            </td>
+            <td>
+            <input type="number" ng-model="Salary" class="form-control" placeholder="Enter SalaryInc.">
+            </td>
+            <td>
+                <label for="petrol"> Petrol:</label>
+            </td>
+            <td>
+            <input type="number" ng-model="Petrol" class="form-control" placeholder="Enter PetrolExp.">
+            </td>
+            </tr>
+            <tr>
+            <td>
+                <label for="rent">Rent:</label>
+            </td>
+            <td>
+            <input type="number" ng-model="Rent" class="form-control" placeholder="Enter RentInc.">
+            </td> 
+            <td>
+                <label for="medical">Medical:</label>
+            </td>
+            <td>
+            <input type="number" ng-model="Medical" class="form-control" placeholder="Enter MedicalExp.">
+            </td> 
+            </tr>
+            <tr>
+            <td>
+                <label for="saving">Saving:</label>
+            </td>
+            <td>
+            <input type="number" ng-model="Saving" class="form-control" placeholder="Enter SavingInc.">
+            </td> 
+            <td>
+                <label for="food">Food:</label>
+            </td>
+            <td>
+            <input type="number" ng-model="Food" class="form-control" placeholder="Enter FoodExp.">
+                </td>
+            </tr>
+                <tr>
+                <td>
+               
+                    </td>
+                    <td>
+           
+                    </td>
+                    <td>
+        <button  class="btn btn-primary"  type="submit" ng-show="!isUpdate">Submit</button>
+          <button type="button"  class="btn btn-primary" ng-click='Update($index)' ng-show="isUpdate">Update</button>            
+                </td>
+                    <td></td></td>
+            </tr>
+            </form>
+            </table>
+        
+        </div>
         <button  class="btn btn-primary" ng-click='showIncome()' >Show Income</button>
         <button  class="btn btn-primary" ng-click='showExpenses()'>Show Expenses</button>
-    </div>
+    </div></br></br>
     
-    <div ng-show="!isIncome">
-        <table border="1" style="min-width:300px">
+    <div ng-show="!isIncome" >
+        <table border="0" style="min-width:300px" class="table">
          <thead>
-            <tr>
+            <tr class="success">
         <th>Person Name</th>
         <th>Petrol</th>   
         <th>Medical</th>     
-        <th>Food</th>   
+        <th>Food</th> 
+        <th>Total Amount</th>         
+        <th></th>            
         </tr>
         </thead>
         <tbody ng-repeat="expense in Expenses">
             <tr>
-            <td>
+            <td ng-if="$odd" class="danger">
                 {{expense.Name}}
             </td>
-                <td>
+            <td ng-if="$even" class="info">
+                {{expense.Name}}
+            </td>
+            <td ng-if="$odd" class="danger"> 
                 {{expense.Petrol}}
             </td>
-                <td>
+                <td ng-if="$even" class="info">
+                {{expense.Petrol}}
+            </td>
+            <td ng-if="$odd" class="danger">
                 {{expense.Medical}}
             </td>
-                <td>
+            <td ng-if="$even" class="info">
+                {{expense.Medical}}
+            </td>    
+             <td ng-if="$odd" class="danger">
                 {{expense.Food}}
             </td>
+                 <td ng-if="$even" class="info">
+                {{expense.Food}}
+            </td>
+                <td ng-if="$even" class="info">
+                {{expense.Petrol + expense.Medical + expense.Food}}
+            </td>
+                
+            <td ng-if="$odd" class="danger">
+                {{expense.Petrol + expense.Medical + expense.Food}}
+            </td>    
+            <td  ng-if="$odd" class="danger"><button  class="btn btn-primary" ng-click='Remove($index)'>Delete</button  <button  class="btn btn-primary" ng-click='updateInfo()'></button>
+            <button  class="btn btn-primary" ng-click='View($index)'>View</button></td> 
+            <td ng-if="$even" class="info"><button  class="btn btn-primary" ng-click='Remove($index)'>Delete</button>
+            <button  class="btn btn-primary" ng-click='View($index)'>View</button></td>    
             </tr>
        
         </tbody>
     </table>
     </div>
     <div  ng-show="isIncome">
-        <table border="1" style="min-width:300px">
+        <table border="0" style="min-width:300px" class="table" >
          <thead>
-            <tr>
+            <tr class="success">
         <th>Person Name</th>
         <th>Salary</th>   
         <th> Rent</th>     
-        <th>Savings</th>   
+        <th>Savings</th> 
+        <th>Total Amount</th>         
+        <th></th>         
         </tr>
         </thead>
-           <tbody ng-repeat="income in Income">
+           <tbody ng-repeat="expense in Expenses">
             <tr>
-            <td>
-                {{income.Name}}
+            <td ng-if="$odd" class="danger">
+                {{expense.Name}}
             </td>
-            <td>
-                {{income.Salary}}
+                <td ng-if="$even" class="info">
+                {{expense.Name}}
             </td>
-             <td>
-                {{income.Rent}}
+            <td ng-if="$odd" class="danger">
+                {{expense.Salary}}
             </td>
-                <td>
-                {{income.Saving}}
+                <td ng-if="$even" class="info">
+                {{expense.Salary}}
             </td>
+             <td ng-if="$odd" class="danger">
+                {{expense.Rent}}
+            </td>
+                <td ng-if="$even" class="info">
+                {{expense.Rent}}
+            </td>
+                <td ng-if="$odd" class="danger">
+                {{expense.Saving}}
+            </td>
+                 <td ng-if="$even" class="info">
+                {{expense.Saving}}
+            </td>
+                
+            <td ng-if="$even" class="info">
+                {{expense.Saving + expense.Rent + expense.Salary}}
+            </td>
+                
+            <td ng-if="$odd" class="danger">
+                {{+expense.Saving + +expense.Rent + expense.Salary}}
+            </td>    
+            <td  ng-if="$odd" class="danger"><button  class="btn btn-primary" ng-click='Remove($index)'>Delete</button>
+            <button  class="btn btn-primary" ng-click='View($index)'>View</button></td> 
+            <td ng-if="$even" class="info"><button  class="btn btn-primary" ng-click='Remove($index)'>Delete</button>  
+            <button  class="btn btn-primary" ng-click='View($index)'>View</button></td>    
             </tr>
        
         </tbody>
