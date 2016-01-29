@@ -5,209 +5,194 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-        <script src="js/app.js"></script>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+       <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        
+        <script src="js/app.js"></script>
+        <script src="js/managerService.js"></script>
+        <style>
+           .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+                border: none;
+            }
+        </style>
  </head>
 <body  ng-controller="myController" >
-    <div >
-        <table border="0" style="min-width:300px" class="table">
-            <form class="form-inline" role="form" ng-submit = submit() novalidate>
-            <tr  class="form-group">
-            <td>
-             <label for="name">Person Name:</label>
+    
+    <ul class="nav nav-pills  navbar-left " >
+        <li class="active btn btn" ng-click='showIncome()'><a href="#" id="subhead"><i class="fa fa-home"></i> Show Income</li></a>
+        <li class="active btn btn" ng-click='showExpenses()'><a href="#" id="subhead"><i class="fa fa-home"></i> Show Expenses</li></a>
+    </ul>
+
+</div></br></br>
+    
+<div ng-show="!isIncome">
+    <table border="0" style="min-width:300px" class="table table-striped">
+        <thead>
+            <tr class="success">
+            <th>Person Name</th>
+            <th>Petrol</th>   
+            <th>Medical</th>     
+            <th>Food</th> 
+            <th>Total Amount</th>         
+            <th></th>            
+            </tr>
+        </thead>
+    <tbody >
+            <tr ng-repeat="expense in Expenses">
+            <td >
+                {{::expense.name}}
             </td>
+
+            <td > 
+                {{::expense.petrol}}
+            </td>
+
+            <td >
+                {{::expense.medical}}
+            </td>
+
+             <td >
+                {{::expense.food}}
+
+
+            <td >
+                 {{expense.petrol + expense.medical + expense.food}}
+            </td>    
+                <td class="nav nav-pills "><button class="active btn btn"  ng-click='remove($index)'>Delete</button> 
+            <button  class="active btn btn" ng-click='View($index)'>View</button></td>     
+            </tr>
+
+    </tbody>
+    </table>
+</div>
+<div  ng-show="isIncome">
+    <table border="0" style="min-width:300px" class="table table-striped" >
+        <thead>
+            <tr class="success">
+            <th>Person Name</th>
+            <th>Salary</th>   
+            <th> Rent</th>     
+            <th>Savings</th> 
+            <th>Total Amount</th>         
+            <th></th>         
+            </tr>
+        </thead>
+        <tbody >
+            <tr ng-repeat="expense in Expenses">
             <td>
-               <input type="text" ng-model="Name" name="Name"  class="form-control" placeholder="Enter Name" >
-<!--
-                <span class="help-inline" ng-show="form.Name && form.Name.$error.required">Required</span>
-            <span class="help-inline" ng-show="submitted && form.Name.$error.text">Invalid email</span>
--->
-            </td>  
+                {{::expense.name}}
+            </td>
+
             <td>
+                {{::expense.salary}}
+
+             <td>
+                {{::expense.rent}}
+            </td>
+
+                <td >
+                {{::expense.saving}}
+            </td>
+
+
+            <td>
+                {{expense.saving + expense.rent + expense.salary}}
+            </td>
+
+
+            <td class="nav nav-pills "><button class="active btn btn" ng-click='remove($index)'>Delete</button>
+            <button  class="active btn btn" ng-click='View($index)'>View</button></td>  
+
+            </tr>
+
+        </tbody>
+
+    </table>
+</div>
+<div >
+        <ul class="nav nav-pills  navbar-left " >
+                        <li class="active btn btn" ng-click="AddInfo()"><a href="#" id="subhead"><i class="fa fa-home"></i> AddInfo</li></a>
+                    </ul>
+    <form class="form-inline"  name="myForm" ng-model="manageData"  ng-submit = submit() novalidate>
+        <table border="0" style="min-width:300px" class="table borderless" ng-show="!isAdd">
             
-            </td>
-            <td>
-            </td>  
-            </tr>
+            
+                <tr  class="form-group">
+                    <td>
+                        <label for="name">Person Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="manageData.name" name="name"  class="form-control" placeholder="Enter Name" required ng-minlength=3 ng-maxlength=30>
+                        <div ng-messages="myForm.name.$error">
+                        <div ng-message="required">This field is required</div>
+                        <div ng-message="minlength">Message must be over 3 characters</div>
+                        <div ng-message="maxlength">Message must not exceed 30 characters</div>
+                        </div>
+                    </td>  
+                     
+                </tr>
                 <th class="center"><h3>Income</h3></th>
-        <th></th>
+                <th></th>
                 <th class="center"><h3>Expenses</h3></th>
-        <th></th>
-            <tr>
-            <td>
-                <label for="salary"> Salary:</label>
-            </td>
-            <td>
-            <input type="number" ng-model="Salary" class="form-control" placeholder="Enter SalaryInc.">
-            </td>
-            <td>
-                <label for="petrol"> Petrol:</label>
-            </td>
-            <td>
-            <input type="number" ng-model="Petrol" class="form-control" placeholder="Enter PetrolExp.">
-            </td>
-            </tr>
-            <tr>
-            <td>
-                <label for="rent">Rent:</label>
-            </td>
-            <td>
-            <input type="number" ng-model="Rent" class="form-control" placeholder="Enter RentInc.">
-            </td> 
-            <td>
-                <label for="medical">Medical:</label>
-            </td>
-            <td>
-            <input type="number" ng-model="Medical" class="form-control" placeholder="Enter MedicalExp.">
-            </td> 
-            </tr>
-            <tr>
-            <td>
-                <label for="saving">Saving:</label>
-            </td>
-            <td>
-            <input type="number" ng-model="Saving" class="form-control" placeholder="Enter SavingInc.">
-            </td> 
-            <td>
-                <label for="food">Food:</label>
-            </td>
-            <td>
-            <input type="number" ng-model="Food" class="form-control" placeholder="Enter FoodExp.">
-                </td>
-            </tr>
+                <th></th>
                 <tr>
                 <td>
-               
-                    </td>
-                    <td>
-           
-                    </td>
-                    <td>
-        <button  class="btn btn-primary"  type="submit" ng-show="!isUpdate">Submit</button>
-          <button type="button"  class="btn btn-primary" ng-click='Update($index)' ng-show="isUpdate">Update</button>            
+                <label for="salary"> Salary:</label>
                 </td>
-                    <td></td></td>
-            </tr>
-            </form>
+                <td>
+                <input type="number" ng-model="manageData.salary" class="form-control" placeholder="Enter SalaryInc.">
+                </td>
+                <td>
+                <label for="petrol"> Petrol:</label>
+                </td>
+                <td>
+                <input type="number" ng-model="manageData.petrol" class="form-control" placeholder="Enter PetrolExp.">
+                </td>
+                </tr>
+                <tr>
+                <td>
+                <label for="rent">Rent:</label>
+                </td>
+                <td>
+                <input type="number" ng-model="manageData.rent" class="form-control" placeholder="Enter RentInc.">
+                </td> 
+                <td>
+                <label for="medical">Medical:</label>
+                </td>
+                <td>
+                <input type="number" ng-model="manageData.medical" class="form-control" placeholder="Enter MedicalExp.">
+                </td> 
+                </tr>
+                <tr>
+                <td>
+                <label for="saving">Saving:</label>
+                </td>
+                <td>
+                <input type="number" ng-model="manageData.saving" class="form-control" placeholder="Enter SavingInc.">
+                </td> 
+                <td>
+                <label for="food">Food:</label>
+                </td>
+                <td>
+                <input type="number" ng-model="manageData.food" class="form-control" placeholder="Enter FoodExp.">
+                </td>
+                </tr>
+                <tr>
+                <td>
+
+                </td></br></br></br>
+                <td class="nav nav-pills ">
+                <button  class="active btn btn"  type="submit" ng-show="!isUpdate">Submit</button>
+                <button type="button"  class="active btn btn" ng-click='update()' ng-show="isUpdate">Update</button>            
+                </td>
+                </tr>
+            
             </table>
-        
-        </div>
-        <button  class="btn btn-primary" ng-click='showIncome()' >Show Income</button>
-        <button  class="btn btn-primary" ng-click='showExpenses()'>Show Expenses</button>
-    </div></br></br>
-    
-    <div ng-show="!isIncome" >
-        <table border="0" style="min-width:300px" class="table">
-         <thead>
-            <tr class="success">
-        <th>Person Name</th>
-        <th>Petrol</th>   
-        <th>Medical</th>     
-        <th>Food</th> 
-        <th>Total Amount</th>         
-        <th></th>            
-        </tr>
-        </thead>
-        <tbody ng-repeat="expense in Expenses">
-            <tr>
-            <td ng-if="$odd" class="danger">
-                {{expense.Name}}
-            </td>
-            <td ng-if="$even" class="info">
-                {{expense.Name}}
-            </td>
-            <td ng-if="$odd" class="danger"> 
-                {{expense.Petrol}}
-            </td>
-                <td ng-if="$even" class="info">
-                {{expense.Petrol}}
-            </td>
-            <td ng-if="$odd" class="danger">
-                {{expense.Medical}}
-            </td>
-            <td ng-if="$even" class="info">
-                {{expense.Medical}}
-            </td>    
-             <td ng-if="$odd" class="danger">
-                {{expense.Food}}
-            </td>
-                 <td ng-if="$even" class="info">
-                {{expense.Food}}
-            </td>
-                <td ng-if="$even" class="info">
-                {{expense.Petrol + expense.Medical + expense.Food}}
-            </td>
-                
-            <td ng-if="$odd" class="danger">
-                {{expense.Petrol + expense.Medical + expense.Food}}
-            </td>    
-            <td  ng-if="$odd" class="danger"><button  class="btn btn-primary" ng-click='Remove($index)'>Delete</button  <button  class="btn btn-primary" ng-click='updateInfo()'></button>
-            <button  class="btn btn-primary" ng-click='View($index)'>View</button></td> 
-            <td ng-if="$even" class="info"><button  class="btn btn-primary" ng-click='Remove($index)'>Delete</button>
-            <button  class="btn btn-primary" ng-click='View($index)'>View</button></td>    
-            </tr>
-       
-        </tbody>
-    </table>
-    </div>
-    <div  ng-show="isIncome">
-        <table border="0" style="min-width:300px" class="table" >
-         <thead>
-            <tr class="success">
-        <th>Person Name</th>
-        <th>Salary</th>   
-        <th> Rent</th>     
-        <th>Savings</th> 
-        <th>Total Amount</th>         
-        <th></th>         
-        </tr>
-        </thead>
-           <tbody ng-repeat="expense in Expenses">
-            <tr>
-            <td ng-if="$odd" class="danger">
-                {{expense.Name}}
-            </td>
-                <td ng-if="$even" class="info">
-                {{expense.Name}}
-            </td>
-            <td ng-if="$odd" class="danger">
-                {{expense.Salary}}
-            </td>
-                <td ng-if="$even" class="info">
-                {{expense.Salary}}
-            </td>
-             <td ng-if="$odd" class="danger">
-                {{expense.Rent}}
-            </td>
-                <td ng-if="$even" class="info">
-                {{expense.Rent}}
-            </td>
-                <td ng-if="$odd" class="danger">
-                {{expense.Saving}}
-            </td>
-                 <td ng-if="$even" class="info">
-                {{expense.Saving}}
-            </td>
-                
-            <td ng-if="$even" class="info">
-                {{expense.Saving + expense.Rent + expense.Salary}}
-            </td>
-                
-            <td ng-if="$odd" class="danger">
-                {{+expense.Saving + +expense.Rent + expense.Salary}}
-            </td>    
-            <td  ng-if="$odd" class="danger"><button  class="btn btn-primary" ng-click='Remove($index)'>Delete</button>
-            <button  class="btn btn-primary" ng-click='View($index)'>View</button></td> 
-            <td ng-if="$even" class="info"><button  class="btn btn-primary" ng-click='Remove($index)'>Delete</button>  
-            <button  class="btn btn-primary" ng-click='View($index)'>View</button></td>    
-            </tr>
-       
-        </tbody>
-        
-    </table>
-    </div>
-    
+        </form>
+        </div>    
 </body>
 </html>
