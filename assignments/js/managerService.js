@@ -9,8 +9,7 @@ myApp.service("manageService",function(){
     ];
     
     this.submit=function(tempScope){
-        
-        that.Expenses.push({name:tempScope.name, petrol:tempScope.petrol, medical:tempScope.medical, food:tempScope.food, salary:tempScope.salary, rent:tempScope.rent, saving:tempScope.saving});
+        that.Expenses.push({name:tempScope.manageData.name, petrol:tempScope.manageData.petrol, medical:tempScope.manageData.medical, food:tempScope.manageData.food, salary:tempScope.manageData.salary, rent:tempScope.manageData.rent, saving:tempScope.manageData.saving});
     };
         
     this.remove=function(index){

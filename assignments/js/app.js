@@ -28,6 +28,7 @@ myApp.controller("myController",['$scope','manageService',function($scope,manage
          
         manageService.submit($scope);
         $scope.isAdd=true;
+        $scope.manageData=""; 
      };
     
     $scope.View=function(index)
@@ -44,9 +45,11 @@ myApp.controller("myController",['$scope','manageService',function($scope,manage
         manageService.remove(index);
     }
     $scope.update=function(){
-                 
         manageService.update($scope.index,$scope.manageData);
         $scope.isAdd=true;
+        $scope.isUpdate=false;
+        $scope.manageData="";         
+
     }  
    
    
