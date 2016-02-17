@@ -1,28 +1,80 @@
-myApp.service("manageService",function($http){
-    var that = this;
+myApp.service("manageService",function($http, $q)
+      {
+        var that = this;
 
+        this.expenseData ={};
+
+        /** Access-Data Function **/
+
+        this.getData = function(index){
+
+            var deffered = $q.defer();
+
+            $http.get("https://api.myjson.com/bins/2ilmr")
+            // $http.get("http://127.0.0.1:49206/angularjs-training-master/assignments/json/expenseData.json")
+                .then(function(response) {
+
+                that.expenseData= response.data;  
+
+                console.log("helo",that.expenseData);
+
+                deffered.resolve(response);
+            }, 
+                      function (response) {
+
+                console.log("Got error");
+
+                deffered.reject("Error "+response);
+            });
+
+            return deffered.promise;
+        };
     
-    this.Expenses=[
-        {name: "Amit",  petrol: 2500,  medical: 10000, food: 15000,salary: 50000,  rent: 20000, saving: 15000},
-        {name: "Vijay",  petrol: 3500,  medical: 20000, food: 15000,salary: 750000,  rent: 40000, saving: 45000},
-        {name: "Nitin",  petrol: 5500,  medical: 8000, food: 10000,salary: 150000,  rent: 30000, saving: 55000}
-    ];
-   
+        /** Add-Data Function **/
     
-    this.submit=function(tempScope){
-        that.Expenses.push({name:tempScope.manageData.name, petrol:tempScope.manageData.petrol, medical:tempScope.manageData.medical, food:tempScope.manageData.food, salary:tempScope.manageData.salary, rent:tempScope.manageData.rent, saving:tempScope.manageData.saving});
-    };
-        
-    this.remove=function(index){
-        this.Expenses.splice(index,1);
-        
-    };
+        this.postData=function(_scope){
+//            that.expenseData.push({'date':_scope.manageData.date,'name':_scope.manageData.name, 'petrol':_scope.manageData.petrol,'medical':_scope.manageData.medical,'food':_scope.manageData.food,'salary':_scope.manageData.salary,'rent':_scope.manageData.rent,'saving':_scope.manageData.saving  
+//                                  });
+           that.expenseData.push({date:_scope.manageData.date,name:_scope.manageData.name, petrol:_scope.manageData.petrol, medical:_scope.manageData.medical, food:_scope.manageData.food, salary:_scope.manageData.salary, rent:_scope.manageData.rent, saving:_scope.manageData.saving});
+
+            console.log("done",that.expenseData);
+
+            $http({
+                method  : 'PUT',
+                url     : 'https://api.myjson.com/bins/2ilmr',
+                //url     : 'http://127.0.0.1:49206/angularjs-training-master/assignments/json/expenseData.json',  
+                data    : angular.toJson(that.expenseData) //forms user object
+            })
+
+        };
     
-    this.update=function(index,tempManageData){
-        
-        that.Expenses[index] = {name:tempManageData.name, petrol:tempManageData.petrol, medical:tempManageData.medical, food:tempManageData.food, salary:tempManageData.salary, rent:tempManageData.rent, saving:tempManageData.saving};
-        
-    } 
-        
+        /** Remove-Data Function **/
+    
+        this.remove=function(index){
+            that.expenseData.splice(index,1);
+            $http({
+                method  : 'PUT',
+                url     : 'https://api.myjson.com/bins/2ilmr',
+                //url     : 'http://127.0.0.1:49206/angularjs-training-master/assignments/json/expenseData.json',       
+                data    : angular.toJson(that.expenseData) //forms user object
+            })
+
+        };
+    
+        /** Update-Data Function **/
+
+        this.update=function(index,tempManageData){
+
+            that.expenseData[index] = {date:tempManageData.date,name:tempManageData.name, petrol:tempManageData.petrol, medical:tempManageData.medical, food:tempManageData.food, salary:tempManageData.salary, rent:tempManageData.rent, saving:tempManageData.saving};
+
+            $http({
+                method  : 'PUT',
+                url     : 'https://api.myjson.com/bins/2ilmr',
+                //url     : 'http://127.0.0.1:49206/angularjs-training-master(1)/angularjs-training-master/assignments/json/expenseData.json',      
+                data    : angular.toJson(that.expenseData) //forms user object
+            })
+
+        } 
+
+
 });        
-        

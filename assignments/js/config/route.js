@@ -1,25 +1,28 @@
 myApp.config(function($stateProvider, $urlRouterProvider){
    
-    $urlRouterProvider.otherwise('/addInfo');
+    $urlRouterProvider.otherwise('/manageInfo');
     
     $stateProvider
+        
         
         .state('addInfo', {
             url: '/addInfo',
             templateUrl: 'template/addInfo.html',
-            controller: 'myController'
+            controller: 'addInfoCtrl'
         })
         
-        .state('showExpenses', {
-            url: '/showExpenses',
-            templateUrl:'template/showExpenses.html',
-            controller: 'myController'
-        })
         
-        .state('showIncome', {
-            url: '/showIncome',
-            templateUrl: 'template/showIncome.html',
-            controller: 'myController'
+        .state('manageInfo', {
+            url: '/manageInfo',
+       // url: '/detail/:name/:index',
+            templateUrl: 'template/manageInfo.html',
+            controller: 'manageInfoCtrl'
+        })
+    
+       .state('viewReport', {
+            url: '/viewReport',
+            templateUrl:'template/viewReport.html',
+            controller: 'viewReportCtrl'
         });
 
 });

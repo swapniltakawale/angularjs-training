@@ -1,37 +1,37 @@
 <!Doctype html>
 <html ng-app="myApp">
- <head>
-    <title>Assignment</title>
+    <head>
+        <title>Assignment</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-       <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/controller/manageInfoController.js"></script>
-        <script src="js/services/managerService.js"></script>
-        <script src="js/config/route.js"></script>
+        <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
         <style>
            .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
                 border: none;
             }
         </style>
- </head>
-<body>
-    <div>
-<ul class="nav nav-pills  navbar-left " >
-    <li class="active btn btn" ng-click="AddInfo()"><a href="#" id="subhead"><i class="fa fa-home"></i> AddInfo</li></a>
-        <li class="active btn btn" ui-sref='showIncome' ng-click="showIncome()"><a href="#" id="subhead"><i class="fa fa-home"></i> Show Income</li></a>
-        <li class="active btn btn" ui-sref='showExpenses'><a href="#" id="subhead"><i class="fa fa-home"></i> Show Expenses</li></a>
-    </ul>
-
-</div></br></br>
-
-    <div ui-view></div>
-</body>
+    </head>
+    <body>
+        <div ng-include="'template/header.html'"></div>
+        <div ui-view></div>
+        <div ng-include="'template/footer.html'" class="footer"></div>  
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/filter/dateFilter.js"></script>
+        <script src="js/directive/confirmDir.js"></script>
+        <script src="js/controller/manageInfoController.js"></script>
+        <script src="js/controller/addInfoController.js"></script>
+        <script src="js/controller/viewReportController.js"></script>
+        <script src="js/services/managerService.js"></script>
+        <script src="js/config/route.js"></script>
+    </body>
 </html>

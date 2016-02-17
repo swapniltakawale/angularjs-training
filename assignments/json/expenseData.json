@@ -1,0 +1,7 @@
+[
+    
+       {"date":"11-01-2016", "name": "Amit",  "petrol": 2500,  "medical": 10000, "food": 15000,"salary": 50000,  "rent": 20000, "saving": 15000},
+        {"date":"11-01-2016", "name": "Vijay",  "petrol": 3500,  "medical": 20000, "food": 15000,"salary": 750000,  "rent": 40000, "saving": 45000},
+        {"date":"11-01-2016", "name": "Nitin",  "petrol": 5500,  "medical": 8000, "food": 10000,"salary": 150000,  "rent": 30000, "saving": 55000}
+    
+]

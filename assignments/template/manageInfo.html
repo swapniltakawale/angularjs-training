@@ -1,0 +1,308 @@
+<div  class="container-fluid  col-md-10 col-md-offset-1">
+<div class="col-md-8 col-md-offset-2">
+    <form class="form-inline"  name="myForm" ng-model="manageData"  ng-submit = submit() novalidate>
+        <table border="0" style="min-width:300px" class="table" ng-show="isUpdate" id="container">   
+            <thead> 
+            <tr>
+                <th></th>  
+                <th>
+                    <h3>
+                        Edit Info
+                    </h3>
+                </th>
+                <th></th>  
+                <th></th>  
+            </tr>
+            </thead> 
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <label>Date:</label>
+                    </td>
+                    <td>
+                        <input type="date" ng-model="manageData.date"  value="{{ manageData.date | date: 'yyyy-MM-dd' }}"> 
+                    </td>
+                </tr>
+                <tr>
+                   <td>
+                        <label>Person Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="manageData.name" name="name"  class="form-control" placeholder="Enter Name" required ng-minlength=3 ng-maxlength=30>
+                        <div ng-messages="myForm.name.$error">
+                            <div ng-message="required" class="ngMessages">This field is required</div>
+                            <div ng-message="minlength" class="ngMessages">Message must be over 3 characters</div>
+                            <div ng-message="maxlength" class="ngMessages">Message must not exceed 30 characters</div>
+                        </div>
+                    </td>  
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <th></th>
+                <th>
+                    <h4>Income</h4>
+                </th>
+                <th></th>
+                <th></th>
+                <tr>
+                    <td>
+                        <label>Salary:</label>
+                    </td>
+                    <td> 
+                        <input type="number" name="salary" ng-model="manageData.salary" class="form-control" placeholder="Enter SalaryInc." required>
+                        <div ng-messages="myForm.salary.$error">
+                            <div ng-message="required" class="ngMessages">This field is required</div>    
+                        </div>            
+                    </td>
+                    <td>
+                        <label>Rent:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.rent" name="rent" class="form-control" placeholder="Enter RentInc." required>
+                        <div ng-messages="myForm.rent.$error">
+                            <div ng-message="required" class="ngMessages">This field is required</div>
+                        </div>    
+                    </td> 
+                </tr>
+                <tr>
+                    <td>
+                        <label for="saving">Saving:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.saving" name="saving" class="form-control" placeholder="Enter SavingInc." required>
+                        <div ng-messages="myForm.saving.$error">
+                            <div ng-message="required" class="ngMessages">This field is required</div>    
+                        </div>      
+                    </td> 
+                    <td></td>
+                    <td></td>    
+                </tr>
+                <th></th>
+                <th>
+                    <h4>Expenses</h4>
+                </th>
+                <th></th>
+                <th></th>
+                <tr>
+                    <td>
+                        <label for="petrol"> Petrol:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.petrol" name="petrol" class="form-control" placeholder="Enter PetrolExp." required>
+                        <div ng-messages="myForm.petrol.$error">
+                            <div ng-message="required" class="ngMessages">This field is required</div>    
+                        </div>      
+                    </td>
+                    <td>
+                        <label>Medical:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.medical" name="medical" class="form-control" placeholder="Enter MedicalExp." required>
+                        <div ng-messages="myForm.medical.$error">
+                            <div ng-message="required" class="ngMessages">This field is required</div>    
+                        </div>      
+                    </td>     
+                </tr>
+                <tr>
+                    <td>
+                    <label for="food">Food:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.food" name="food" class="form-control" placeholder="Enter FoodExp." required>
+                        <div ng-messages="myForm.food.$error">
+                            <div ng-message="required" class="ngMessages">This field is required</div>    
+                        </div>      
+                    </td>
+                    <td></td>
+                    <td></td>    
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td class="nav nav-pills ">
+                        <button type="button"  class="active btn btn" ng-click='update()' ><i class="fa fa-pencil-square-o"></i> Update</button>            
+                    </td>
+                    <td></td>
+                    <td></td> 
+                </tr>
+              <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+        </table>
+    </form>
+</div> 
+<div class="container-fluid  col-md-8 col-md-offset-2">
+ <table border="0" style="min-width:300px" class="table" ng-show="isview" id="container">
+           <thead> 
+            <tr>
+                <th></th>  
+                <th>
+                    <h3>
+                        View Detail Info
+                    </h3>
+                </th>
+                <th></th>  
+                <th></th>  
+            </tr>
+            </thead>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <label>Date:</label>
+                    </td>
+                    <td>
+                        <input type="date" ng-model="manageData.date"  value="{{ manageData.date | date: 'yyyy-MM-dd' }}" readonly> 
+                    </td>
+                </tr>
+                <tr>
+                   <td>
+                        <label>Person Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="manageData.name" name="name"  class="form-control" placeholder="Enter Name" readonly>
+                    </td>  
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <th></th>
+                <th>
+                    <h4>Income</h4>
+                </th>
+                <th></th>
+                <th></th>
+                <tr>
+                    <td>
+                        <label>Salary:</label>
+                    </td>
+                    <td> 
+                        <input type="number" name="salary" ng-model="manageData.salary" class="form-control" placeholder="Enter SalaryInc." readonly>     
+                    </td>
+                    <td>
+                        <label>Rent:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.rent" name="rent" class="form-control" placeholder="Enter RentInc." readonly> 
+                    </td> 
+                </tr>
+                <tr>
+                    <td>
+                        <label for="saving">Saving:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.saving" name="saving" class="form-control" placeholder="Enter SavingInc." readonly>    
+                    </td> 
+                    <td></td>
+                    <td></td>    
+                </tr>
+                <th></th>
+                <th>
+                    <h4>Expenses</h4>
+                </th>
+                <th></th>
+                <th></th>
+                <tr>
+                    <td>
+                        <label for="petrol"> Petrol:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.petrol" name="petrol" class="form-control" placeholder="Enter PetrolExp." readonly>   
+                    </td>
+                    <td>
+                        <label>Medical:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.medical" name="medical" class="form-control" placeholder="Enter MedicalExp." readonly> 
+                    </td>     
+                </tr>
+                <tr>
+                    <td>
+                    <label for="food">Food:</label>
+                    </td>
+                    <td>
+                        <input type="number" ng-model="manageData.food" name="food" class="form-control" placeholder="Enter FoodExp." readonly>    
+                    </td>
+                    <td></td>
+                    <td></td>    
+                </tr>
+               <tr>
+                <td class="nav nav-pills ">
+                    <button  class="active btn btn" ng-click='manageInfo()'>
+                       <i class="fa fa-backward"></i> Back
+                    </button>         
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+           <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+           </tr>
+
+        </table>
+</div>
+<div  ng-show="isIncome">
+    <table border="0" style="min-width:300px" class="table table-striped" ng-show="isShow" id="container">
+        <thead>
+            <tr>
+                <th></th>  
+                <th>
+                    <h3>
+                        Manage Info
+                    </h3>
+                </th>
+                <th></th>  
+                <th></th>  
+            </tr>
+            <tr class="info">
+                <th>
+                    Person Name
+                </th>
+                <th>
+                    Total Income
+                </th> 
+                <th>
+                    Total Expenses
+                </th>         
+                <th>
+                    Net Balance 
+                </th>
+                <th></th>
+            </tr>
+        </thead>    
+        <tbody >
+            <tr ng-repeat="expense in Expenses">
+                <td>
+                    {{::expense.name}}
+                </td>
+
+                <td>
+                    {{expense.saving + expense.rent + expense.salary}}
+                </td>
+                <td >
+                    {{expense.petrol + expense.medical + expense.food}}
+                </td>  
+                <td >
+                    {{expense.saving + expense.rent + expense.salary- expense.petrol - expense.medical - expense.food }}
+                </td>  
+                
+                <td class="nav nav-pills "><button class="active btn btn"  confirmed-click="remove($index)" ng-confirm-click="Would you like to delete the field?" title="deleteInfo"><i class="fa fa-trash"></i></button> 
+                    <button  class="active btn btn" ng-click='viewInfo($index)' title="viewDetailInfo"><i class="fa fa-street-view"></i></button>
+                 <button  class="active btn btn" ng-click='view($index)' title="editInfo"><i class="fa fa-pencil-square"></i></button></td> 
+   
+
+            </tr>
+
+        </tbody>
+
+    </table>
+</div>
+</div>
