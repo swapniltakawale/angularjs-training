@@ -1,2 +1,2 @@
-var myApp=angular.module("myApp",['ngMessages','ui.router','ngSanitize']);
+var myApp=angular.module("myApp",['ngMessages','ui.router','ngSanitize','angularMoment']);
  

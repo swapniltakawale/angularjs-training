@@ -32,7 +32,7 @@ myApp.controller("manageInfoCtrl",function($scope,manageService)
 
         };
     
-        $scope.manageInfo = function () 
+        $scope.manageInfo = function() 
         {
             $scope.isview=false;
             $scope.isShow=true;

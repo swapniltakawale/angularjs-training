@@ -1,12 +1,10 @@
-myApp.filter('dateRange', function(){
-
-    return function(input, startDate, endDate) {
-       angular.forEach(input, function(obj){
-
-        if(obj.received.getTime() >= startDate.getTime() && obj.received.getTime() <= endDate.getTime())   {
-            return obj;
-        }
-       });
-
-    };
+myApp.filter('dateFilter', function(){
+    return function(arr, field){
+        var filtered = [];        
+        angular.forEach(arr, function(item){            
+            if(moment(item.date).format('DD/MM/YYYY').indexOf(field) > -1)
+                filtered.push(item);
+        });
+        return filtered;
+    }
 });

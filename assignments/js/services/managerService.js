@@ -33,8 +33,7 @@ myApp.service("manageService",function($http, $q)
         /** Add-Data Function **/
     
         this.postData=function(_scope){
-//            that.expenseData.push({'date':_scope.manageData.date,'name':_scope.manageData.name, 'petrol':_scope.manageData.petrol,'medical':_scope.manageData.medical,'food':_scope.manageData.food,'salary':_scope.manageData.salary,'rent':_scope.manageData.rent,'saving':_scope.manageData.saving  
-//                                  });
+                              
            that.expenseData.push({date:_scope.manageData.date,name:_scope.manageData.name, petrol:_scope.manageData.petrol, medical:_scope.manageData.medical, food:_scope.manageData.food, salary:_scope.manageData.salary, rent:_scope.manageData.rent, saving:_scope.manageData.saving});
 
             console.log("done",that.expenseData);

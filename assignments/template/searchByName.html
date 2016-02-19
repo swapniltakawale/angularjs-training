@@ -1,0 +1,115 @@
+
+    <table border="0" style="min-width:300px" class="table" ng-show="isShow" id="container">
+      
+        <thead>
+            <tr>
+                <th></th>  
+                <th>
+                    <h3>
+                       Report Search By Name
+                    </h3>
+                </th>
+                <th>
+                </th>  
+                <th>
+                </th>  
+            </tr>
+            
+   
+                <th>
+                    <label>Search by Name: </label>
+                </th>  
+                <th>
+                    <input ng-model="searchKeyword">
+                </th>
+<!--                 
+                <th>
+                    <label>Search by Date: </label>
+                </th>
+                <th>
+                    <input ng-model="date">
+                </th>  
+-->
+            <tr class="info">
+                <th>
+                    Date
+                </th>
+                <th>
+                    Person Name
+                </th>
+                <th>
+                    Salary
+                </th>   
+                <th> 
+                    Rent
+                </th>     
+                <th>
+                    Savings
+                </th> 
+                <th>
+                    Total Income
+                </th>       
+                <th>
+                    Petrol
+                </th>   
+                <th>
+                    Medical
+                </th>     
+                <th>
+                    Food
+                </th> 
+                <th>
+                    Total Expense
+                </th>   
+                <th>
+                    Net Balance
+                </th>                        
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="expense in Expenses | filter: searchKeyword">
+                <td>
+                    {{::expense.date|date:'dd-MM-yyyy'}}
+                </td>
+
+                <td>
+                    {{::expense.name}}
+                </td>
+
+                <td>
+                    {{::expense.salary}}
+
+                <td>
+                    {{::expense.rent}}
+                </td>
+
+                <td >
+                    {{::expense.saving}}
+                </td>
+
+
+                <td>
+                    {{expense.saving + expense.rent + expense.salary}}
+                </td>
+                <td > 
+                    {{::expense.petrol}}
+                </td>
+
+                <td >
+                    {{::expense.medical}}
+                </td>
+
+                <td >
+                    {{::expense.food}}
+
+
+                <td >
+                    {{expense.petrol + expense.medical + expense.food}}
+                </td>    
+                <td >
+                    {{expense.saving + expense.rent + expense.salary- expense.petrol - expense.medical - expense.food }}
+                </td>  
+            </tr>
+
+        </tbody>
+    </table>

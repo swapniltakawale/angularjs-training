@@ -21,8 +21,7 @@ body{
 #container{
     min-height: 300px;
     box-shadow: 0px 0px 22px 10px #ddd;
-    background: #fff
-        
+    background: #fff;    
 }
 
 ul{
@@ -47,14 +46,13 @@ h3{
 
 
 .footer{ 
-
     width: 100%; 
     color: #000;
     bottom: 0;
     position: absolute;
     z-index: 10;
     height: 3em;
-    margin-top: 15em;
+/*    padding-top: 2em;*/
     text-align: center;
     font-family: cursive;
 }

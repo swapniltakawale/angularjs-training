@@ -14,7 +14,6 @@ myApp.config(function($stateProvider, $urlRouterProvider){
         
         .state('manageInfo', {
             url: '/manageInfo',
-       // url: '/detail/:name/:index',
             templateUrl: 'template/manageInfo.html',
             controller: 'manageInfoCtrl'
         })
@@ -23,6 +22,21 @@ myApp.config(function($stateProvider, $urlRouterProvider){
             url: '/viewReport',
             templateUrl:'template/viewReport.html',
             controller: 'viewReportCtrl'
+        })
+    
+        .state('viewReport.detailReport', {
+            url: '/detailReport',
+            templateUrl: 'template/detailReport.html'
+        })
+        
+        .state('viewReport.searchByName', {
+            url: '/searchByName',
+            templateUrl: 'template/searchByName.html'
+        })
+
+        .state('viewReport.searchByDate', {
+            url: '/searchByDate',
+            templateUrl: 'template/searchByDate.html',
         });
 
 });
