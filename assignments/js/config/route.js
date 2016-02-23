@@ -37,6 +37,10 @@ myApp.config(function($stateProvider, $urlRouterProvider){
         .state('viewReport.searchByDate', {
             url: '/searchByDate',
             templateUrl: 'template/searchByDate.html',
+        })
+        .state('paymentAlert', {
+                url: '/paymentAlert',
+                templateUrl: 'template/paymentAlert.html'
         });
 
 });

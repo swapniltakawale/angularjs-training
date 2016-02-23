@@ -73,7 +73,7 @@ myApp.service("manageService",function($http, $q)
                 data    : angular.toJson(that.expenseData) //forms user object
             })
 
-        } 
-
+        };
+        
 
 });        

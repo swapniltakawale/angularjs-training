@@ -1,6 +1,6 @@
 myApp.controller("manageInfoCtrl",function($scope,manageService)
     {
-        $scope.myText = "<h5>&copy; sv.takawale &#124; 2016</h5>";
+        $scope.myText = "<h5>&copy; sv.takawale &#124; XpenseManager App-2016</h5>";
 
     
         $scope.index = 0;

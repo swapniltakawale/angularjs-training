@@ -1,0 +1,77 @@
+<div class="container-fluid col-md-8 col-md-offset-2">
+    <table border="0" style="min-width:300px" class="table" id="container">
+      <payment-alert>
+        <thead>
+            <tr>
+                <th>
+                    <h3>
+                       Payment Alert
+                    </h3>
+                </th>  
+                <th>
+                    
+                </th>
+                <th>
+                </th>  
+                <th>
+                </th>  
+            </tr>
+            <tr class="info">
+                <th>
+                    Date
+                </th>
+                <th>
+                    Person Name
+                </th>
+                <th>
+                    Petrol
+                </th>   
+                <th>
+                    Medical
+                </th>     
+                <th>
+                    Food
+                </th>  
+                <th>
+                    Aalert
+                </th>   
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{paymentDue}}
+                </td>
+            
+            </tr>
+            <tr ng-repeat="expense in Expenses">
+                <td>
+                    {{::expense.date|date:'dd-MM-yyyy'}}
+                </td>
+
+                <td>
+                    {{::expense.name}}
+                </td>
+
+                <td > 
+                    {{::expense.petrol}}
+                </td>
+
+                <td >
+                    {{::expense.medical}}
+                </td>
+
+                <td >
+                    {{::expense.food}}
+                </td>
+                
+                <td ng-if='expenseDues[$index].isDue' style="color:red">
+                    <i class="fa fa-bell-o"></i>   
+                </td>
+                
+            </tr>
+
+        </tbody>
+    </table>
+    </payment-alert>
+</div>
